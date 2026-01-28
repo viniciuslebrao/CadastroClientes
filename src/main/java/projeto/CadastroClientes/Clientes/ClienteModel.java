@@ -1,4 +1,4 @@
-package projeto.CadastroClientes;
+package projeto.CadastroClientes.Clientes;
 
 import jakarta.persistence.*;
 
@@ -7,7 +7,9 @@ import jakarta.persistence.*;
 @Table(name = "tb_cliente")
 public class ClienteModel {
 
+    //Id serve para indicar ao compilador que a variável imediatamente abaixo vai ser tradada como ID
     @Id
+    //GeneratedValue É a forma como o Java vai criar um ID para o banco de dados, neste caso, de forma sequencial
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
