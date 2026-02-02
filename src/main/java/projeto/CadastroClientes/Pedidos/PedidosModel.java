@@ -1,10 +1,11 @@
 package projeto.CadastroClientes.Pedidos;
 
 import jakarta.persistence.*;
+import projeto.CadastroClientes.Clientes.ClienteModel;
+import projeto.CadastroClientes.ItemPedido.ItemPedido;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -13,29 +14,29 @@ public class PedidosModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long clienteID;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private ClienteModel cliente;
+
     private LocalDateTime dataPedido;
 
-    public PedidosModel(Long id, Long clienteID, LocalDateTime dataPedido) {
-        this.id = id;
-        this.clienteID = clienteID;
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
+
+    public PedidosModel() {}
+
+    public PedidosModel(ClienteModel clienteID, LocalDateTime dataPedido) {
+        this.cliente = clienteID;
         this.dataPedido = dataPedido;
     }
 
-    public Long getId() {
-        return id;
+    public ClienteModel getCliente() {
+        return cliente;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getClienteID() {
-        return clienteID;
-    }
-
-    public void setClienteID(Long clienteID) {
-        this.clienteID = clienteID;
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 
     public LocalDateTime getDataPedido() {

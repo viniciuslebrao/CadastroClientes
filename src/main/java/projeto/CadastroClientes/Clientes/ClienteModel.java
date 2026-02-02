@@ -1,6 +1,10 @@
 package projeto.CadastroClientes.Clientes;
 
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import projeto.CadastroClientes.Pedidos.PedidosModel;
+
+import java.util.List;
 
 //Entity tranforma uma classe em uma entidade no DB
 @Entity
@@ -12,9 +16,17 @@ public class ClienteModel {
     //GeneratedValue É a forma como o Java vai criar um ID para o banco de dados, neste caso, de forma sequencial
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nome;
+
     private String email;
-    private int idade;
+    private Integer idade;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<PedidosModel> pedidos;
+
+    public ClienteModel() { }
 
     public ClienteModel(String nome, String email, int idade) {
         this.nome = nome;
