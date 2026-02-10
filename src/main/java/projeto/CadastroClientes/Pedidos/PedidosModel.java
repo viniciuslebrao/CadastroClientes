@@ -1,6 +1,9 @@
 package projeto.CadastroClientes.Pedidos;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import projeto.CadastroClientes.Clientes.ClienteModel;
 import projeto.CadastroClientes.ItemPedido.ItemPedido;
 
@@ -9,6 +12,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_pedido")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class PedidosModel {
 
     @Id
@@ -23,27 +29,6 @@ public class PedidosModel {
 
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
-
-    public PedidosModel() {}
-
-    public PedidosModel(ClienteModel clienteID, LocalDateTime dataPedido) {
-        this.cliente = clienteID;
-        this.dataPedido = dataPedido;
-    }
-
-    public ClienteModel getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(ClienteModel cliente) {
-        this.cliente = cliente;
-    }
-
-    public LocalDateTime getDataPedido() {
-        return dataPedido;
-    }
-
-    public void setDataPedido(LocalDateTime dataPedido) {
-        this.dataPedido = dataPedido;
-    }
 }
+
+

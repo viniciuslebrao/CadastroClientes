@@ -1,37 +1,22 @@
 package projeto.CadastroClientes.ItemPedido;
 
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class ItemPedidoId {
 
     private Long idPedido;
     private Long idProduto;
 
-    public ItemPedidoId() {}
 
-    public ItemPedidoId(Long idPedido, Long idProduto) {
-        this.idPedido = idPedido;
-        this.idProduto = idProduto;
-    }
-
-    public Long getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(Long idPedido) {
-        this.idPedido = idPedido;
-    }
-
-    public Long getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Long idProduto) {
-        this.idProduto = idProduto;
-    }
 
     @Override
     public boolean equals(Object o) {

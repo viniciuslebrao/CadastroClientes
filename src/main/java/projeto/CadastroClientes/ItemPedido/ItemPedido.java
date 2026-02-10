@@ -1,11 +1,17 @@
 package projeto.CadastroClientes.ItemPedido;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import projeto.CadastroClientes.Pedidos.PedidosModel;
 import projeto.CadastroClientes.Produtos.ProdutoModel;
 
 @Entity
 @Table(name = "tb_itemPedido")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class ItemPedido {
 
     @EmbeddedId
@@ -24,5 +30,5 @@ public class ItemPedido {
     private Double precoPedido;
     private Integer quantidadePedido;
 
-    public ItemPedido() {}
+
 }

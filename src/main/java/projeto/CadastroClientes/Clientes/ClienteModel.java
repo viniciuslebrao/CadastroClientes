@@ -1,14 +1,26 @@
 package projeto.CadastroClientes.Clientes;
 
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import projeto.CadastroClientes.Pedidos.PedidosModel;
 
 import java.util.List;
 
 //Entity tranforma uma classe em uma entidade no DB
 @Entity
+//Table cria e nomeia a tabela no DB
 @Table(name = "tb_cliente")
+//Cria um construtor sem argumentos (Construtor vazio)
+@NoArgsConstructor
+/*
+ Cria um contrutor com todos os argumentos (Construtor com todos os atributos da classe)
+ Obs: Isso evita a escrita de sobrecarga de construtor, o lombok faz isso automaticamente
+*/
+@AllArgsConstructor
+//@Data pede ao lombok para os getters e setters serem criados
+@Data
 public class ClienteModel {
 
     //Id serve para indicar ao compilador que a variável imediatamente abaixo vai ser tradada como ID
@@ -17,44 +29,16 @@ public class ClienteModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Declara que a coluna não pode possuir um valor nulo
     @Column(nullable = false)
     private String nome;
 
     private String email;
     private Integer idade;
 
+    //OneToMany- Um Cliente possui vários pedidos | ManyToOne - Um Pedido(ou mais) só pertencem a um único cliente
     @OneToMany(mappedBy = "cliente")
     private List<PedidosModel> pedidos;
 
-    public ClienteModel() { }
 
-    public ClienteModel(String nome, String email, int idade) {
-        this.nome = nome;
-        this.email = email;
-        this.idade = idade;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
 }
