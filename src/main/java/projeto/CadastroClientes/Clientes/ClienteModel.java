@@ -30,10 +30,13 @@ public class ClienteModel {
     private Long id;
 
     //Declara que a coluna não pode possuir um valor nulo
+
     @Column(nullable = false)
     private String nome;
 
+    @Column(unique = true)
     private String email;
+
     private Integer idade;
 
     //OneToMany- Um Cliente possui vários pedidos | ManyToOne - Um Pedido(ou mais) só pertencem a um único cliente
