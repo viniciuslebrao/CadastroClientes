@@ -19,12 +19,14 @@ public class PedidosModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "id_cliente", nullable = false)
     private ClienteModel cliente;
 
+    @Column(name = "data_do_pedido")
     private LocalDateTime dataPedido;
 
     @OneToMany(mappedBy = "pedido")

@@ -27,16 +27,18 @@ public class ClienteModel {
     @Id
     //GeneratedValue É a forma como o Java vai criar um ID para o banco de dados, neste caso, de forma sequencial
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     //Declara que a coluna não pode possuir um valor nulo
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "nome")
     private String nome;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "email")
     private String email;
 
+    @Column(name = "idade")
     private Integer idade;
 
     //OneToMany- Um Cliente possui vários pedidos | ManyToOne - Um Pedido(ou mais) só pertencem a um único cliente

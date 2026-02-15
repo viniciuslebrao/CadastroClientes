@@ -15,19 +15,23 @@ import projeto.CadastroClientes.Produtos.ProdutoModel;
 public class ItemPedido {
 
     @EmbeddedId
+    @Column(name = "id")
     private ItemPedidoId id;
 
     @ManyToOne
     @MapsId("idProduto")
-    @JoinColumn(name = "produto_id")
+    @JoinColumn(name = "id_produto")
     private ProdutoModel produto;
 
     @ManyToOne
     @MapsId("idPedido")
-    @JoinColumn(name = "pedido_id")
+    @JoinColumn(name = "id_pedido")
     private PedidosModel pedido;
 
+    @Column(name = "preco_pedido")
     private Double precoPedido;
+
+    @Column(name = "quantidade_pedido")
     private Integer quantidadePedido;
 
 
