@@ -1,8 +1,6 @@
 package projeto.CadastroClientes.Clientes;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping
@@ -14,4 +12,34 @@ public class ClienteController {
     public String boasVindas(){
         return "Essa é minha primeira rota!";
     }
+
+    // Adicionar cliente (CREATE)
+    @PostMapping("/cadastroCliente")
+    public String cadastrarCliente(){
+        return "Cliente cadastrado!";
+    }
+
+    // Procurar cliente por ID(READ)
+    @GetMapping("/clientePorId")
+    public String buscarClientePorId() {
+        return "ClienteId!";
+    }
+
+    // Mostrar a lista completa de clientes (READ)
+    @GetMapping("/clientes")
+    public String buscarTodosOsClientes(){
+        return "Todos os clientes!";
+    }
+
+    // Atualizar completamente os dados dos clientes (UPDATE)
+    @PutMapping("/atualizacaoCadastroClientePorId")
+    public String atualizarDadosCliente(){
+        return "Cliente atualizado!";
+    }
+    // Deletar cliente (DELETE)
+    @DeleteMapping("/delecaoClientePorId")
+    public String deletarCliente(){
+        return "Cliente deletado!";
+    }
+
 }
