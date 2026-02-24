@@ -3,7 +3,7 @@ package projeto.CadastroClientes.Clientes;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("clientes")
 public class ClienteController {
 
 
@@ -20,13 +20,13 @@ public class ClienteController {
     }
 
     // Procurar cliente por ID(READ)
-    @GetMapping("/clientePorId")
+    @GetMapping("/listarClientePorId")
     public String buscarClientePorId() {
         return "ClienteId!";
     }
 
     // Mostrar a lista completa de clientes (READ)
-    @GetMapping("/clientes")
+    @GetMapping("/listar")
     public String buscarTodosOsClientes(){
         return "Todos os clientes!";
     }
