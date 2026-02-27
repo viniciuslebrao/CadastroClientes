@@ -1,5 +1,6 @@
 package projeto.CadastroClientes.Clientes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,6 +44,7 @@ public class ClienteModel {
 
     //OneToMany- Um Cliente possui vários pedidos | ManyToOne - Um Pedido(ou mais) só pertencem a um único cliente
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<PedidosModel> pedidos;
 
 
