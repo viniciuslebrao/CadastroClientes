@@ -26,10 +26,11 @@ public class ClienteController {
         return "Cliente cadastrado!";
     }
 
+    //localhost:8080/clientes/listarClientePorId/2
     // Procurar cliente por ID(READ)
-    @GetMapping("/listarClientePorId")
-    public String buscarClientePorId() {
-        return "ClienteId!";
+    @GetMapping("/listar/{id}")
+    public ClienteModel buscarClientePorId(@PathVariable Long id) {
+        return service.listarClientePorId(id);
     }
 
     // Mostrar a lista completa de clientes (READ)
