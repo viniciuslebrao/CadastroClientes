@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<ClienteModel, Long> {
 
-    ClienteModel findById(int id);
 
 }

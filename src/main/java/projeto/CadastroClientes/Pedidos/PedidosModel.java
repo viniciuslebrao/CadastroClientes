@@ -1,5 +1,6 @@
 package projeto.CadastroClientes.Pedidos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class PedidosModel {
     private LocalDateTime dataPedido;
 
     @OneToMany(mappedBy = "pedido")
+    @JsonIgnore
     private List<ItemPedido> itens;
 }
 

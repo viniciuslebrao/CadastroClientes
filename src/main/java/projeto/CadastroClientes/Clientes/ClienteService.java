@@ -27,9 +27,8 @@ public class ClienteService {
     }
 
     //Adicionar cliente
-    public ClienteModel cadastrarCliente(){
-        ClienteModel user = new ClienteModel();
-        return clienteRepository.save(user);
+    public ClienteModel cadastrarCliente(ClienteModel cliente){
+        return clienteRepository.save(cliente);
     }
 
 

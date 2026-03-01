@@ -21,9 +21,9 @@ public class ClienteController {
     }
 
     // Adicionar cliente (CREATE)
-    @PostMapping("/cadastroCliente")
-    public String cadastrarCliente(){
-        return "Cliente cadastrado!";
+    @PostMapping("/cadastro")
+    public ClienteModel cadastrarCliente(@RequestBody ClienteModel cliente){
+        return service.cadastrarCliente(cliente);
     }
 
     //localhost:8080/clientes/listarClientePorId/2
@@ -40,12 +40,12 @@ public class ClienteController {
     }
 
     // Atualizar completamente os dados dos clientes (UPDATE)
-    @PutMapping("/atualizacaoCadastroClientePorId")
+    @PutMapping("/atualizacaoCadastroPorId")
     public String atualizarDadosCliente(){
         return "Cliente atualizado!";
     }
     // Deletar cliente (DELETE)
-    @DeleteMapping("/delecaoClientePorId")
+    @DeleteMapping("/delecaoPorId")
     public String deletarCliente(){
         return "Cliente deletado!";
     }
