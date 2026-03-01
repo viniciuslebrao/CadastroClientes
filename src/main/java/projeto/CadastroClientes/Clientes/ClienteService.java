@@ -32,7 +32,11 @@ public class ClienteService {
     }
 
     //Atualizar dados do cliente
-    public ClienteModel atualizarCliente(ClienteModel cliente){
+    public ClienteModel atualizarCliente(Long id, ClienteModel cliente){
+        if(!repository.existsById(id)){
+            return null;
+        }
+        cliente.setId(id);
         return repository.save(cliente);
     }
 
