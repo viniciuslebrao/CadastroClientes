@@ -9,26 +9,37 @@ import java.util.Optional;
 @Service
 public class ClienteService {
 
-    private final ClienteRepository clienteRepository;
+    private final ClienteRepository repository;
 
     public ClienteService(ClienteRepository repository) {
-        this.clienteRepository = repository;
+        this.repository = repository;
     }
 
     //Listar clientes
     public List<ClienteModel> listarClientes(){
-        return clienteRepository.findAll();
+        return repository.findAll();
     }
 
     //Listar por ID
     public ClienteModel listarClientePorId(Long id){
-        Optional<ClienteModel> clienteId = clienteRepository.findById(id);
+        Optional<ClienteModel> clienteId = repository.findById(id);
         return clienteId.orElse(null);
     }
 
     //Adicionar cliente
     public ClienteModel cadastrarCliente(ClienteModel cliente){
-        return clienteRepository.save(cliente);
+        return repository.save(cliente);
+    }
+
+    //Atualizar dados do cliente
+    public ClienteModel atualizarCliente(ClienteModel cliente){
+        return repository.save(cliente);
+    }
+
+    //Deletar cliente
+    public void deletarCliente(Long id){
+        repository.deleteById(id);
+
     }
 
 

@@ -40,14 +40,15 @@ public class ClienteController {
     }
 
     // Atualizar completamente os dados dos clientes (UPDATE)
-    @PutMapping("/atualizacaoCadastroPorId")
-    public String atualizarDadosCliente(){
-        return "Cliente atualizado!";
+    @PutMapping("/atualizacaoCadastro")
+    public ClienteModel atualizarDadosCliente(@RequestBody ClienteModel cliente){
+        return service.atualizarCliente(cliente);
     }
+
     // Deletar cliente (DELETE)
-    @DeleteMapping("/delecaoPorId")
-    public String deletarCliente(){
-        return "Cliente deletado!";
+    @DeleteMapping("/deletarPorId/{id}")
+    public void deletarCliente(@PathVariable Long id){
+       service.deletarCliente(id);
     }
 
 }
