@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import projeto.CadastroClientes.Pedidos.PedidosModel;
 import projeto.CadastroClientes.Produtos.ProdutoModel;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "tb_itemPedido")
 @NoArgsConstructor
@@ -29,7 +31,7 @@ public class ItemPedidoModel {
     private PedidosModel pedido;
 
     @Column(name = "preco_pedido")
-    private Double precoPedido;
+    private BigDecimal precoPedido;
 
     @Column(name = "quantidade_pedido")
     private Integer quantidadePedido;
