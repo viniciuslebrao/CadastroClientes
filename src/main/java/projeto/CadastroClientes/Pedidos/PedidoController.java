@@ -2,29 +2,42 @@ package projeto.CadastroClientes.Pedidos;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("pedidos")
 public class PedidoController {
 
+    private final PedidoService service;
+
+    public PedidoController(PedidoService service){
+        this.service = service;
+    }
+
     //GET -- Requisição para listar Pedidos
     @GetMapping("/listar")
-    public String listarPedidos(){
-        return "Pedidos listados!";
+    public List<PedidosModel> listarPedidos(){
+        return service.consultarPedidos();
+    }
+
+    @GetMapping("/listarPorId/{id}")
+    public PedidosModel listarPedidoPorId(@PathVariable Long id){
+        return service.consultarPedidoId(id);
     }
 
     @PostMapping("/realizar")
-    public String realizarPedido(){
-        return "Pedido Realizado!";
+    public PedidosModel realizarPedido(@RequestBody PedidosModel pedido){
+        return service.realizarPedido(pedido);
     }
 
-    @PutMapping("/alterar")
-    public String alterarPedido(){
-        return "Pedido atualizado!";
+    @PatchMapping("/alterar/{id}")
+    public PedidosModel alterarPedido(@PathVariable Long id, @RequestBody PedidosModel pedido){
+        return service.atualizarPedidoId(id, pedido);
     }
 
-    @DeleteMapping("/deletar")
-    public String cancelarPedido(){
-        return "Pedido cancelado!";
+    @DeleteMapping("/deletar/{id}")
+    public void cancelarPedido(@PathVariable Long id){
+        service.deletarPedido(id);
     }
 
 

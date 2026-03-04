@@ -1,4 +1,4 @@
 package projeto.CadastroClientes.Produtos;
 
-public class PedidoController {
+public enum StatusPedido {
 }

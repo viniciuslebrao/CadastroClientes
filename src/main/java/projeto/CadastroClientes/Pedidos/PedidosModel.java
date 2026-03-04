@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import projeto.CadastroClientes.Clientes.ClienteModel;
-import projeto.CadastroClientes.ItemPedido.ItemPedido;
+import projeto.CadastroClientes.ItemPedido.ItemPedidoModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,7 +32,7 @@ public class PedidosModel {
 
     @OneToMany(mappedBy = "pedido")
     @JsonIgnore
-    private List<ItemPedido> itens;
+    private List<ItemPedidoModel> itens;
 }
 
 

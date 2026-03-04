@@ -12,7 +12,7 @@ import projeto.CadastroClientes.Produtos.ProdutoModel;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ItemPedido {
+public class ItemPedidoModel {
 
     @EmbeddedId
     @Column(name = "id")
