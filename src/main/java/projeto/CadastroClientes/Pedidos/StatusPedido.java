@@ -1,4 +1,4 @@
-package projeto.CadastroClientes.Produtos;
+package projeto.CadastroClientes.Pedidos;
 
 public enum StatusPedido {
     CARRINHO,

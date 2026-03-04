@@ -18,6 +18,10 @@ import java.util.List;
 @Data
 public class PedidosModel {
 
+    public PedidosModel(StatusPedido status){
+        this.status = StatusPedido.CARRINHO;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,8 +31,15 @@ public class PedidosModel {
     @JoinColumn(name = "id_cliente", nullable = false)
     private ClienteModel cliente;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private StatusPedido status;
+
     @Column(name = "data_do_pedido")
     private LocalDateTime dataPedido;
+
+    @Column(name = "data_de_finalizacao")
+    private LocalDateTime dataFinalizado;
 
     @OneToMany(mappedBy = "pedido")
     @JsonIgnore
