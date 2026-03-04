@@ -1,8 +1,11 @@
 package projeto.CadastroClientes.Pedidos;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class PedidoService {
 
     private final PedidoRepository repository;
