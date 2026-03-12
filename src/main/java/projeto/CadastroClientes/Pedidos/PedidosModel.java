@@ -18,8 +18,10 @@ import java.util.List;
 @Data
 public class PedidosModel {
 
-    public PedidosModel(StatusPedido status){
+    @PrePersist
+    public void prePersist(){
         this.status = StatusPedido.CARRINHO;
+        this.dataPedido = LocalDateTime.now();
     }
 
     @Id
