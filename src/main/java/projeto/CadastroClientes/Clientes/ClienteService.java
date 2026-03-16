@@ -10,9 +10,11 @@ import java.util.Optional;
 public class ClienteService {
 
     private final ClienteRepository repository;
+    private ClienteMapper mapper;
 
-    public ClienteService(ClienteRepository repository) {
+    public ClienteService(ClienteRepository repository, ClienteMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     //Listar clientes
@@ -27,8 +29,10 @@ public class ClienteService {
     }
 
     //Adicionar cliente
-    public ClienteModel cadastrarCliente(ClienteModel cliente){
-        return repository.save(cliente);
+    public ClienteDTO cadastrarCliente(ClienteDTO clienteDTO){
+        ClienteModel cliente = mapper.map(clienteDTO);
+        repository.save(cliente);
+        return mapper.map(cliente);
     }
 
     //Atualizar dados do cliente

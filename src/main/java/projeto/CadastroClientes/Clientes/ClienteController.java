@@ -22,7 +22,7 @@ public class ClienteController {
 
     // Adicionar cliente (CREATE)
     @PostMapping("/cadastro")
-    public ClienteModel cadastrarCliente(@RequestBody ClienteModel cliente){
+    public ClienteDTO cadastrarCliente(@RequestBody ClienteDTO cliente){
         return service.cadastrarCliente(cliente);
     }
 
