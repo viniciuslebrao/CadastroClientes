@@ -1,6 +1,10 @@
-package projeto.CadastroClientes.Clientes;
+package projeto.CadastroClientes.Clientes.Service;
 
 import org.springframework.stereotype.Service;
+import projeto.CadastroClientes.Clientes.Mapper.ClienteMapper;
+import projeto.CadastroClientes.Clientes.DTO.ClienteDTO;
+import projeto.CadastroClientes.Clientes.Model.ClienteModel;
+import projeto.CadastroClientes.Clientes.Repository.ClienteRepository;
 import projeto.CadastroClientes.Handler.EntidadeNaoEncontradaException;
 
 import java.util.ArrayList;

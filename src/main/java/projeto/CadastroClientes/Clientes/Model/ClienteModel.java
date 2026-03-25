@@ -1,4 +1,4 @@
-package projeto.CadastroClientes.Clientes;
+package projeto.CadastroClientes.Clientes.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
