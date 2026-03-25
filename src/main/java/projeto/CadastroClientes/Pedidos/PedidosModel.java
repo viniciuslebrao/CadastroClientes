@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import projeto.CadastroClientes.Clientes.ClienteModel;
+import projeto.CadastroClientes.Clientes.Model.ClienteModel;
 import projeto.CadastroClientes.ItemPedido.ItemPedidoModel;
 
 import java.time.LocalDateTime;
