@@ -1,6 +1,8 @@
-package projeto.CadastroClientes.Clientes;
+package projeto.CadastroClientes.Clientes.Mapper;
 
 import org.springframework.stereotype.Component;
+import projeto.CadastroClientes.Clientes.DTO.ClienteDTO;
+import projeto.CadastroClientes.Clientes.Model.ClienteModel;
 
 @Component
 public class ClienteMapper {
@@ -11,7 +13,6 @@ public class ClienteMapper {
         clienteModel.setNome(clienteDTO.getNome());
         clienteModel.setEmail(clienteDTO.getEmail());
         clienteModel.setIdade(clienteDTO.getIdade());
-        clienteModel.setPedidos(clienteDTO.getPedidos());
 
         return clienteModel;
     }
@@ -22,7 +23,6 @@ public class ClienteMapper {
         clienteDTO.setNome(clienteModel.getNome());
         clienteDTO.setEmail(clienteModel.getEmail());
         clienteDTO.setIdade(clienteModel.getIdade());
-        clienteDTO.setPedidos(clienteModel.getPedidos());
 
         return clienteDTO;
     }
