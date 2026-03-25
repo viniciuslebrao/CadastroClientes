@@ -1,6 +1,7 @@
 package projeto.CadastroClientes.Clientes;
 
 import org.springframework.stereotype.Service;
+import projeto.CadastroClientes.Handler.EntidadeNaoEncontradaException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Optional;
 public class ClienteService {
 
     private final ClienteRepository repository;
-    private ClienteMapper mapper;
+    private final ClienteMapper mapper;
 
     public ClienteService(ClienteRepository repository, ClienteMapper mapper) {
         this.repository = repository;
@@ -29,8 +30,8 @@ public class ClienteService {
     }
 
     //Listar por ID
-    public ClienteDTO listarClientePorId(Long id){
-        return repository.findById(id).map(mapper::map).orElseThrow(() -> new RuntimeException("Cliente não cadastrado!"));
+    public ClienteDTO listarClientePorId(Long id) throws EntidadeNaoEncontradaException {
+        return repository.findById(id).map(mapper::map).orElseThrow(() -> new EntidadeNaoEncontradaException("ID não encontrado! "+ id));
     }
 
     //Adicionar cliente
@@ -41,7 +42,7 @@ public class ClienteService {
     }
 
     //Atualizar dados do clienteDTO
-    public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO){
+    public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO) throws EntidadeNaoEncontradaException{
         Optional<ClienteModel> clienteId = repository.findById(id);
         if(clienteId.isPresent()){
             ClienteModel clienteAtualizado =  mapper.map(clienteDTO);
@@ -49,13 +50,17 @@ public class ClienteService {
             repository.save(clienteAtualizado);
             return mapper.map(clienteAtualizado);
         }
-        return null;
+        throw new EntidadeNaoEncontradaException("ID não encontrado! "+ id);
     }
 
     //Deletar cliente
-    public void deletarCliente(Long id){
-        repository.deleteById(id);
-
+    public void deletarCliente(Long id) throws EntidadeNaoEncontradaException{
+        if(repository.existsById(id)) {
+            repository.deleteById(id);
+        }
+        else{
+            throw new EntidadeNaoEncontradaException("ID não encontrado");
+        }
     }
 
 
