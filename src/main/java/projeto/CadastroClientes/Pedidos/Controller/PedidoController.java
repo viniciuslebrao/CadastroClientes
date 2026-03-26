@@ -17,27 +17,27 @@ public class PedidoController {
     }
 
     //GET -- Requisição para listar Pedidos
-    @GetMapping("/listar")
+    @GetMapping()
     public List<PedidosModel> listarPedidos(){
         return service.consultarPedidos();
     }
 
-    @GetMapping("/listarPorId/{id}")
+    @GetMapping("/{id}")
     public PedidosModel listarPedidoPorId(@PathVariable Long id){
         return service.consultarPedidoId(id);
     }
 
-    @PostMapping("/realizar")
+    @PostMapping()
     public PedidosModel realizarPedido(@RequestBody PedidosModel pedido){
         return service.realizarPedido(pedido);
     }
 
-    @PatchMapping("/alterar/{id}")
+    @PatchMapping("/{id}")
     public PedidosModel alterarPedido(@PathVariable Long id, @RequestBody PedidosModel pedido){
         return service.atualizarPedidoId(id, pedido);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void cancelarPedido(@PathVariable Long id){
         service.deletarPedido(id);
     }
