@@ -1,4 +1,4 @@
-package projeto.CadastroClientes.ItemPedido;
+package projeto.CadastroClientes.ItemPedido.CompositeKey;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

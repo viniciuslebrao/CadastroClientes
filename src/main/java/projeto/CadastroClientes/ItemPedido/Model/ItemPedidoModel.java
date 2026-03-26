@@ -1,11 +1,12 @@
-package projeto.CadastroClientes.ItemPedido;
+package projeto.CadastroClientes.ItemPedido.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import projeto.CadastroClientes.Pedidos.PedidosModel;
-import projeto.CadastroClientes.Produtos.ProdutoModel;
+import projeto.CadastroClientes.ItemPedido.CompositeKey.ItemPedidoId;
+import projeto.CadastroClientes.Pedidos.Model.PedidosModel;
+import projeto.CadastroClientes.Produtos.Model.ProdutoModel;
 
 import java.math.BigDecimal;
 

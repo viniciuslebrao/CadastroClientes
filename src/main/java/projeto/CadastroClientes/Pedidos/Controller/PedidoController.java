@@ -1,6 +1,8 @@
-package projeto.CadastroClientes.Pedidos;
+package projeto.CadastroClientes.Pedidos.Controller;
 
 import org.springframework.web.bind.annotation.*;
+import projeto.CadastroClientes.Pedidos.Service.PedidoService;
+import projeto.CadastroClientes.Pedidos.Model.PedidosModel;
 
 import java.util.List;
 

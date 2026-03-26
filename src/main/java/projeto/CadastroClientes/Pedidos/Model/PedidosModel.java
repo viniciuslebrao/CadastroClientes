@@ -1,4 +1,4 @@
-package projeto.CadastroClientes.Pedidos;
+package projeto.CadastroClientes.Pedidos.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import projeto.CadastroClientes.Clientes.Model.ClienteModel;
-import projeto.CadastroClientes.ItemPedido.ItemPedidoModel;
+import projeto.CadastroClientes.ItemPedido.Model.ItemPedidoModel;
+import projeto.CadastroClientes.Pedidos.StatusPedido;
 
 import java.time.LocalDateTime;
 import java.util.List;

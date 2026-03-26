@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import projeto.CadastroClientes.Pedidos.PedidosModel;
+import projeto.CadastroClientes.Pedidos.Model.PedidosModel;
 
 import java.util.List;
 

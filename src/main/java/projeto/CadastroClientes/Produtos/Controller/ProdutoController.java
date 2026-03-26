@@ -1,6 +1,8 @@
-package projeto.CadastroClientes.Produtos;
+package projeto.CadastroClientes.Produtos.Controller;
 
 import org.springframework.web.bind.annotation.*;
+import projeto.CadastroClientes.Produtos.Model.ProdutoModel;
+import projeto.CadastroClientes.Produtos.Service.ProdutoService;
 
 import java.util.List;
 

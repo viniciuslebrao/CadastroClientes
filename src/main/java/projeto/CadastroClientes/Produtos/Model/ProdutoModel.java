@@ -1,4 +1,4 @@
-package projeto.CadastroClientes.Produtos;
+package projeto.CadastroClientes.Produtos.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

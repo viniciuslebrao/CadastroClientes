@@ -1,6 +1,7 @@
-package projeto.CadastroClientes.ItemPedido;
+package projeto.CadastroClientes.ItemPedido.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import projeto.CadastroClientes.ItemPedido.Model.ItemPedidoModel;
 
 import java.util.List;
 

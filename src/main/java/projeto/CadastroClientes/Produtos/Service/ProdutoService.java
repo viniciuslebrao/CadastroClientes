@@ -1,6 +1,8 @@
-package projeto.CadastroClientes.Produtos;
+package projeto.CadastroClientes.Produtos.Service;
 
 import org.springframework.stereotype.Service;
+import projeto.CadastroClientes.Produtos.Model.ProdutoModel;
+import projeto.CadastroClientes.Produtos.Repository.ProdutoRepository;
 
 import java.util.List;
 import java.util.Optional;

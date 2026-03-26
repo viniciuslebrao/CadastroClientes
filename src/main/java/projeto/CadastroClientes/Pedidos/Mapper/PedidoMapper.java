@@ -1,7 +1,9 @@
-package projeto.CadastroClientes.Pedidos;
+package projeto.CadastroClientes.Pedidos.Mapper;
 
 import org.springframework.stereotype.Component;
 import projeto.CadastroClientes.Clientes.Model.ClienteModel;
+import projeto.CadastroClientes.Pedidos.DTO.PedidosDTO;
+import projeto.CadastroClientes.Pedidos.Model.PedidosModel;
 
 @Component
 public class PedidoMapper {

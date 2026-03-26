@@ -1,9 +1,11 @@
-package projeto.CadastroClientes.ItemPedido;
+package projeto.CadastroClientes.ItemPedido.Service;
 
 import org.springframework.stereotype.Service;
+import projeto.CadastroClientes.ItemPedido.CompositeKey.ItemPedidoId;
+import projeto.CadastroClientes.ItemPedido.Model.ItemPedidoModel;
+import projeto.CadastroClientes.ItemPedido.Repository.ItemPedidoRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ItemPedidoService {

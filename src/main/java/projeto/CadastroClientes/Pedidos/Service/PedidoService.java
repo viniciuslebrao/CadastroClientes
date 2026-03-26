@@ -1,6 +1,8 @@
-package projeto.CadastroClientes.Pedidos;
+package projeto.CadastroClientes.Pedidos.Service;
 
 import org.springframework.stereotype.Service;
+import projeto.CadastroClientes.Pedidos.Model.PedidosModel;
+import projeto.CadastroClientes.Pedidos.Repository.PedidoRepository;
 
 import java.util.List;
 import java.util.Optional;
