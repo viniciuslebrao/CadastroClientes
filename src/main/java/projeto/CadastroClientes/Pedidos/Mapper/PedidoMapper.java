@@ -3,6 +3,7 @@ package projeto.CadastroClientes.Pedidos.Mapper;
 import org.springframework.stereotype.Component;
 import projeto.CadastroClientes.Clientes.Model.ClienteModel;
 import projeto.CadastroClientes.Pedidos.DTO.PedidoCreateDTO;
+import projeto.CadastroClientes.Pedidos.DTO.PedidoUpdateDTO;
 import projeto.CadastroClientes.Pedidos.DTO.PedidoResponseDTO;
 import projeto.CadastroClientes.Pedidos.Model.PedidosModel;
 
@@ -19,6 +20,15 @@ public class PedidoMapper {
 
         return pedidosModel;
     }
+    public void mapUpdate(PedidoUpdateDTO pedidoDTO, PedidosModel pedidosModel){
+        if(pedidoDTO.getStatus() != null){
+            pedidosModel.setStatus(pedidoDTO.getStatus());
+        }
+        if(pedidoDTO.getDataFinalizado() != null){
+            pedidosModel.setDataFinalizado(pedidoDTO.getDataFinalizado());
+        }
+
+    }
 
     public PedidoResponseDTO mapResponse(PedidosModel pedidosModel){
         PedidoResponseDTO pedidosDTO = new PedidoResponseDTO();
@@ -30,4 +40,5 @@ public class PedidoMapper {
         }
         return pedidosDTO;
     }
+
 }

@@ -8,19 +8,20 @@ import jakarta.validation.constraints.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClienteDTO {
+public class ClienteCreateDTO {
 
 
     private Long id;
 
     @NotBlank
+    @Size(min = 3, max = 12)
     private String nome;
 
     @Email
     @NotBlank
     private String email;
 
-    @Min(0)
+    @Min(18)
     private Integer idade;
 
 }
