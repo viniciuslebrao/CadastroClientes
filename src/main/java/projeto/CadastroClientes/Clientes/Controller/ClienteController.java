@@ -1,9 +1,12 @@
 package projeto.CadastroClientes.Clientes.Controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projeto.CadastroClientes.Clientes.DTO.ClienteDTO;
+import projeto.CadastroClientes.Clientes.DTO.ClienteCreateDTO;
+import projeto.CadastroClientes.Clientes.DTO.ClienteResponseDTO;
+import projeto.CadastroClientes.Clientes.DTO.ClienteUpdateDTO;
 import projeto.CadastroClientes.Clientes.Service.ClienteService;
 import projeto.CadastroClientes.Handler.EntidadeNaoEncontradaException;
 
@@ -27,8 +30,8 @@ public class ClienteController {
 
     // Adicionar cliente (CREATE)
     @PostMapping()
-    public ResponseEntity<ClienteDTO> cadastrarCliente(@RequestBody ClienteDTO cliente){
-        ClienteDTO clienteDTO = service.cadastrarCliente(cliente);
+    public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@Valid @RequestBody ClienteCreateDTO cliente){
+        ClienteResponseDTO clienteDTO = service.cadastrarCliente(cliente);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(clienteDTO);
     }
@@ -36,27 +39,27 @@ public class ClienteController {
     //localhost:8080/clientes/listarClientePorId/2
     // Procurar cliente por ID(READ)
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteDTO> buscarClientePorId(@PathVariable Long id) throws EntidadeNaoEncontradaException {
-        ClienteDTO clienteDTO = service.listarClientePorId(id);
+    public ResponseEntity<ClienteResponseDTO> buscarClientePorId(@PathVariable Long id) throws EntidadeNaoEncontradaException {
+        ClienteResponseDTO clienteDTO = service.listarClientePorId(id);
         return ResponseEntity.ok(clienteDTO);
     }
 
     // Mostrar a lista completa de clientes (READ)
     @GetMapping()
-    public List<ClienteDTO> listarClientes(){
+    public List<ClienteResponseDTO> listarClientes(){
         return service.listarClientes();
     }
 
     // Atualizar completamente os dados dos clientes (UPDATE)
     @PutMapping("/{id}")
-    public ResponseEntity<ClienteDTO> atualizarDadosCliente(@PathVariable Long id, @RequestBody ClienteDTO cliente) throws EntidadeNaoEncontradaException{
-        ClienteDTO clienteDTOAtualizado = service.atualizarCliente(id, cliente);
+    public ResponseEntity<ClienteResponseDTO> atualizarDadosCliente(@PathVariable Long id, @Valid @RequestBody ClienteUpdateDTO cliente) throws EntidadeNaoEncontradaException{
+        ClienteResponseDTO clienteDTOAtualizado = service.atualizarCliente(id, cliente);
         return ResponseEntity.ok(clienteDTOAtualizado);
     }
 
     // Deletar cliente (DELETE)
     @DeleteMapping("/{id}")
-    public ResponseEntity<ClienteDTO> deletarCliente(@PathVariable Long id) throws EntidadeNaoEncontradaException{
+    public ResponseEntity<ClienteResponseDTO> deletarCliente(@PathVariable Long id) throws EntidadeNaoEncontradaException{
 
         service.deletarCliente(id);
         return ResponseEntity.noContent().build();

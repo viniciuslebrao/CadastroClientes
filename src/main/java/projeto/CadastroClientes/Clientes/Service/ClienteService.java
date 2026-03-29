@@ -1,15 +1,15 @@
 package projeto.CadastroClientes.Clientes.Service;
 
 import org.springframework.stereotype.Service;
+import projeto.CadastroClientes.Clientes.DTO.ClienteResponseDTO;
+import projeto.CadastroClientes.Clientes.DTO.ClienteUpdateDTO;
 import projeto.CadastroClientes.Clientes.Mapper.ClienteMapper;
-import projeto.CadastroClientes.Clientes.DTO.ClienteDTO;
+import projeto.CadastroClientes.Clientes.DTO.ClienteCreateDTO;
 import projeto.CadastroClientes.Clientes.Model.ClienteModel;
 import projeto.CadastroClientes.Clientes.Repository.ClienteRepository;
 import projeto.CadastroClientes.Handler.EntidadeNaoEncontradaException;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
@@ -24,37 +24,35 @@ public class ClienteService {
     }
 
     //Listar clientes
-    public List<ClienteDTO> listarClientes(){
+    public List<ClienteResponseDTO> listarClientes(){
         List<ClienteModel> clientes = repository.findAll();
-        List<ClienteDTO> clienteDTO = new ArrayList<>();
-        for(ClienteModel cliente: clientes){
-            clienteDTO.add(mapper.map(cliente));
-        }
-        return clienteDTO;
+        return clientes.stream()
+                .map(mapper::mapResponse)
+                .toList();
     }
 
     //Listar por ID
-    public ClienteDTO listarClientePorId(Long id) throws EntidadeNaoEncontradaException {
-        return repository.findById(id).map(mapper::map).orElseThrow(() -> new EntidadeNaoEncontradaException("ID não encontrado! "+ id));
+    public ClienteResponseDTO listarClientePorId(Long id) throws EntidadeNaoEncontradaException {
+        return repository.findById(id)
+                .map(mapper::mapResponse)
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("ID não encontrado! "+ id));
     }
 
     //Adicionar cliente
-    public ClienteDTO cadastrarCliente(ClienteDTO clienteDTO){
-        ClienteModel cliente = mapper.map(clienteDTO);
+    public ClienteResponseDTO cadastrarCliente(ClienteCreateDTO clienteDTO){
+        repository.findByEmail(clienteDTO.getEmail()).ifPresent(c -> {throw new IllegalArgumentException("Email já cadastrado!");});
+        ClienteModel cliente = mapper.mapCreate(clienteDTO);
         repository.save(cliente);
-        return mapper.map(cliente);
+        return mapper.mapResponse(cliente);
     }
 
     //Atualizar dados do clienteDTO
-    public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO) throws EntidadeNaoEncontradaException{
-        Optional<ClienteModel> clienteId = repository.findById(id);
-        if(clienteId.isPresent()){
-            ClienteModel clienteAtualizado =  mapper.map(clienteDTO);
-            clienteAtualizado.setId(id);
-            repository.save(clienteAtualizado);
-            return mapper.map(clienteAtualizado);
-        }
-        throw new EntidadeNaoEncontradaException("ID não encontrado! "+ id);
+    public ClienteResponseDTO atualizarCliente(Long id, ClienteUpdateDTO clienteDTO) throws EntidadeNaoEncontradaException{
+        ClienteModel clienteExistente = repository.findById(id)
+                .orElseThrow(()-> new EntidadeNaoEncontradaException("ID não encontrado! "+ id));
+        mapper.mapUpdate(clienteDTO, clienteExistente);
+        repository.save(clienteExistente);
+        return mapper.mapResponse(clienteExistente);
     }
 
     //Deletar cliente

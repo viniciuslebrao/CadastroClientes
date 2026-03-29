@@ -1,43 +1,66 @@
 package projeto.CadastroClientes.Pedidos.Service;
 
 import org.springframework.stereotype.Service;
+import projeto.CadastroClientes.Clientes.Model.ClienteModel;
+import projeto.CadastroClientes.Clientes.Repository.ClienteRepository;
+import projeto.CadastroClientes.Handler.EntidadeNaoEncontradaException;
+import projeto.CadastroClientes.Pedidos.DTO.PedidoCreateDTO;
+import projeto.CadastroClientes.Pedidos.DTO.PedidoUpdateDTO;
+import projeto.CadastroClientes.Pedidos.DTO.PedidoResponseDTO;
+import projeto.CadastroClientes.Pedidos.Mapper.PedidoMapper;
 import projeto.CadastroClientes.Pedidos.Model.PedidosModel;
 import projeto.CadastroClientes.Pedidos.Repository.PedidoRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PedidoService {
 
+    private final ClienteRepository clienteRepository;
     private final PedidoRepository repository;
+    private final PedidoMapper mapper;
 
-    public PedidoService(PedidoRepository repository){
+    public PedidoService(PedidoRepository repository, PedidoMapper pedido, ClienteRepository clienteRepository){
         this.repository = repository;
+        this.mapper = pedido;
+        this.clienteRepository = clienteRepository;
     }
 
-    public List<PedidosModel> consultarPedidos(){
-        return repository.findAll();
+    public List<PedidoResponseDTO> consultarPedidos(){
+        List<PedidosModel> pedidos = repository.findAll();
+        return pedidos.stream()
+                .map(mapper::mapResponse)
+                .toList();
     }
 
-    public PedidosModel consultarPedidoId(Long id){
-        Optional<PedidosModel> pedidoId = repository.findById(id);
-        return pedidoId.orElse(null);
+    public PedidoResponseDTO consultarPedidoId(Long id) throws EntidadeNaoEncontradaException {
+        return repository.findById(id)
+                .map(mapper::mapResponse)
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("ID não encontrado! "+ id));
     }
 
-    public PedidosModel realizarPedido(PedidosModel pedido){
-        return repository.save(pedido);
+    public PedidoResponseDTO realizarPedido(PedidoCreateDTO pedido){
+        PedidosModel pedidosModel = mapper.mapCreate(pedido);
+        ClienteModel clienteModel = clienteRepository.getReferenceById(pedido.getClienteId());
+        pedidosModel.setCliente(clienteModel);
+        repository.save(pedidosModel);
+        return mapper.mapResponse(pedidosModel);
     }
 
-    public PedidosModel atualizarPedidoId(Long id, PedidosModel pedido){
-        if(!repository.existsById(id)){
-            return null;
+    public PedidoResponseDTO atualizarPedidoId(Long id, PedidoUpdateDTO pedido) throws EntidadeNaoEncontradaException{
+        PedidosModel pedidoExistente = repository.findById(id).orElseThrow(()-> new EntidadeNaoEncontradaException("ID não encontrado! "+ id));
+        mapper.mapUpdate(pedido, pedidoExistente);
+        repository.save(pedidoExistente);
+        return mapper.mapResponse(pedidoExistente);
+    }
+
+    public void deletarPedido(Long id) throws EntidadeNaoEncontradaException{
+        if(repository.existsById(id)){
+            repository.deleteById(id);
         }
-        pedido.setId(id);
-        return repository.save(pedido);
-    }
+        else {
+            throw new EntidadeNaoEncontradaException("ID não encontrado! "+ id);
+        }
 
-    public void deletarPedido(Long id){
-        repository.deleteById(id);
     }
 }
