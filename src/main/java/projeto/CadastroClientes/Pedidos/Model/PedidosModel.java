@@ -21,8 +21,12 @@ public class PedidosModel {
 
     @PrePersist
     public void prePersist(){
-        this.status = StatusPedido.CARRINHO;
-        this.dataPedido = LocalDateTime.now();
+        if (status == null) {
+            this.status = StatusPedido.CARRINHO;
+        }
+        if(dataPedido == null){
+            this.dataPedido = LocalDateTime.now();
+        }
     }
 
     @Id
