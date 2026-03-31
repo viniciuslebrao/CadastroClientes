@@ -59,8 +59,7 @@ public class ClienteController {
 
     // Deletar cliente (DELETE)
     @DeleteMapping("/{id}")
-    public ResponseEntity<ClienteResponseDTO> deletarCliente(@PathVariable Long id) throws EntidadeNaoEncontradaException{
-
+    public ResponseEntity<Void> deletarCliente(@PathVariable Long id) throws EntidadeNaoEncontradaException{
         service.deletarCliente(id);
         return ResponseEntity.noContent().build();
     }

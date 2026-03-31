@@ -45,7 +45,7 @@ public class PedidoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<PedidoResponseDTO> cancelarPedido(@PathVariable Long id) throws EntidadeNaoEncontradaException{
+    public ResponseEntity<Void> cancelarPedido(@PathVariable Long id) throws EntidadeNaoEncontradaException{
         service.deletarPedido(id);
         return ResponseEntity.noContent().build();
     }

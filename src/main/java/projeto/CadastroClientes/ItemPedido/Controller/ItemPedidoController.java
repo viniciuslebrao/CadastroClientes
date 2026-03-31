@@ -44,7 +44,7 @@ public class ItemPedidoController {
     }
 
     @DeleteMapping("/{pedidoId}/{produtoId}")
-    public ResponseEntity<ItemPedidoResponseDTO> deletarItem(@PathVariable Long pedidoId, @PathVariable Long produtoId) throws EntidadeNaoEncontradaException{
+    public ResponseEntity<Void> deletarItem(@PathVariable Long pedidoId, @PathVariable Long produtoId) throws EntidadeNaoEncontradaException{
         service.deletarItem(pedidoId, produtoId);
         return ResponseEntity.noContent().build();
     }
