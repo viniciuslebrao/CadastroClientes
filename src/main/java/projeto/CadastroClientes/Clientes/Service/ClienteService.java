@@ -40,7 +40,8 @@ public class ClienteService {
 
     //Adicionar cliente
     public ClienteResponseDTO cadastrarCliente(ClienteCreateDTO clienteDTO){
-        repository.findByEmail(clienteDTO.getEmail()).ifPresent(c -> {throw new IllegalArgumentException("Email já cadastrado!");});
+        repository.findByEmail(clienteDTO.getEmail())
+                .ifPresent(c -> {throw new IllegalArgumentException("Email já cadastrado!");});
         ClienteModel cliente = mapper.mapCreate(clienteDTO);
         repository.save(cliente);
         return mapper.mapResponse(cliente);

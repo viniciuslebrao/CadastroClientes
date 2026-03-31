@@ -48,7 +48,7 @@ public class PedidosModel {
     @Column(name = "data_de_finalizacao")
     private LocalDateTime dataFinalizado;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<ItemPedidoModel> itens;
 }
