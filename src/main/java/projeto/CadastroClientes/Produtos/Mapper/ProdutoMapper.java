@@ -40,6 +40,7 @@ public class ProdutoMapper {
 
     public ProdutoResponseDTO mapResponse(ProdutoModel produtoModel){
         ProdutoResponseDTO produtoDTO = new ProdutoResponseDTO();
+        produtoDTO.setId(produtoModel.getId());
         produtoDTO.setNomeProduto(produtoModel.getNomeProduto());
         produtoDTO.setNomeMarca(produtoModel.getNomeMarca());
         produtoDTO.setPreco(produtoModel.getPreco());
